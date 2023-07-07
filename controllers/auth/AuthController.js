@@ -22,10 +22,16 @@ module.exports = {
                 });
 
                 //세션 설정해주기
-                
+                const timestamp = Date.now();
+                req.session.user = id + '_' + timestamp;
 
-                console.log(result);
+                console.log(req.session.user);
+
+                // console.log(result);
             }
         });
+    },
+    logout: function (req, res, next) {
+        
     }
 }

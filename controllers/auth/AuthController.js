@@ -10,18 +10,19 @@ module.exports = {
         Auth.login(id, password).then((result) => {
             if(result == [] || result == '' || result == null) {
                 res.send({
-                    success: true,
+                    state: 201,
                     message: '아이디 또는 비밀번호가 일치하지 않습니다.',
                     data: result
                 });
             } else {
                 res.send({
-                    success: true,
-                    message: '로그인 성공',
+                    state: 200,
+                    message: '로그인되었습니다.',
                     data: result
                 });
 
                 //세션 설정해주기
+                
 
                 console.log(result);
             }

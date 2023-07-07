@@ -3,7 +3,7 @@ const db = require('../../config/database.js');
 
 module.exports = {
     login: function(id, pass) {
-        const sql =  `SELECT * FROM users WHERE id = '${id}' AND password = '${pass}'`;
+        const sql =  `SELECT * FROM member WHERE id = '${id}' AND password = '${pass}'`;
 
         return new Promise((resolve, reject) => {
             const con = mysql.createConnection(db);

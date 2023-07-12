@@ -8,7 +8,7 @@ router.use((req, res, next) => {
   // next();
 
   if(req.session.user && req.session.is_logined) {
-    console.log('로그인 되었음');
+    console.log('login');
     console.log(req.session);
     next();
   } else {

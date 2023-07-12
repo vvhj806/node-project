@@ -5,15 +5,16 @@ const url = require('url');
 router.use((req, res, next) => {
   bootstrap.init();
   bootstrap.initDefault();
-  // next();
+  next();
 
-  if(req.session.user && req.session.is_logined) {
-    console.log('login');
-    console.log(req.session);
-    next();
-  } else {
-    res.redirect('/auth');
-  }
+  // 위 next 주석치고 밑에 주석해제하기
+  // if(req.session.user && req.session.is_logined) {
+  //   console.log('login');
+  //   console.log(req.session);
+  //   next();
+  // } else {
+  //   res.redirect('/auth');
+  // }
 });
 
 router.get("/", (req, res) => {

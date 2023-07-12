@@ -5,14 +5,14 @@ const url = require('url');
 router.use((req, res, next) => {
   bootstrap.init();
   bootstrap.initDefault();
-  next();
+  // next();
 
   if(req.session.user && req.session.is_logined) {
     console.log('로그인 되었음');
     console.log(req.session);
+    next();
   } else {
-    // 로그인 페이지로 보내기
-    console.log('로그인 페이지로 보내기');
+    res.redirect('/auth');
   }
 });
 

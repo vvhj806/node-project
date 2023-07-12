@@ -6,14 +6,18 @@ router.use((req, res, next) => {
    bootstrap.init();
    bootstrap.initAuthLayout();
    next();
+
+   console.log(req.session);
+   if(req.session.user && req.session.is_logined) {
+      console.log('로그인 되었음');
+      // 대시보드로 리다이렉트 시키기
+      // res.redirect('/dashboards');
+   }
  })
 
  router.get("/", (req, res) => {
    theme.addJavascriptFile("js/custom/authentication/sign-in/general.js");
    res.render(theme.getPageViewPath("auth", "sign-in"), { currentLayout: theme.getLayoutPath("auth") });
-
-   console.log(req.session);
-   console.log(req.session.user);
  });
 
 router.get('/new-password', (req, res) => {
@@ -38,6 +42,7 @@ router.get('/sign-up', (req, res) => {
 
 //로그인 axios
 router.post('/login-req', authController.login);
+router.post('/logout-req', authController.logout);
 
 
 module.exports = router;

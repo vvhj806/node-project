@@ -1,0 +1,53 @@
+<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+	<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+		<%- include(theme.getLayoutPath("partials/sidebar-layout/_header.ejs")); %>
+        <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+            <%- include(theme.getLayoutPath("partials/sidebar-layout/_sidebar.ejs")); %>
+            <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                <!--begin::Content wrapper-->
+                <div class="d-flex flex-column flex-column-fluid">                    
+                    <div id="kt_app_content" class="app-content flex-column-fluid">
+                        <div id="kt_app_content_container" class="app-container container-fluid mg_t_30">
+                            <div class="card card-flush h-md-50">
+                                <div class="card-header pt-5">
+                                    <div class="card-title d-flex flex-column">
+                                        <div class="d-flex align-items-center">
+                                            <div class="fs-1hx fw-bold text-dark me-2 introduce_title">
+                                                홈페이지에 소개될<br>
+                                                회사 정보를 입력해보세요!
+                                            </div>
+                                        </div>
+
+                                        <div class="text-darkgray-400 pt-1 fw-semibold fs-6 mg_b_30">
+                                            해당 정보는 웹사이트의 회사 소개 페이지에 보여집니다.
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+                                    <div class="introduce_sub_title">제목</div>
+                                    <div class="introduce_line"></div>
+                                    <input type="text" class="introduce_input_title mg_b_30" id="introduce_title" placeholder="타이틀을 입력해주세요" value="<%= data.title %>">
+
+                                    <div class="introduce_sub_title">내용</div>
+                                    <div class="introduce_line"></div>
+                                    <textarea class="introduce_input_content mg_b_20" id="introduce_content" placeholder="내용을 입력해주세요."><%= data.content %></textarea>
+                                </div>
+                            </div>
+
+                            <div class="btn btn-sm fw-bold introduce_save_btn" id="saveIntroduceInfo">저장</div>
+                        </div>
+                    </div>
+
+                    <%#- include(theme.getLayoutPath("partials/sidebar-layout/_content.ejs")); %>
+                </div>
+                <!--end::Content wrapper-->
+                <%- include(theme.getLayoutPath("partials/sidebar-layout/_footer.ejs")); %>
+            </div>
+        </div>
+	</div>
+</div>
+
+<%- include(theme.getPartialPath("partials/_drawers.ejs")); %>
+
+<script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>

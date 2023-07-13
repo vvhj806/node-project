@@ -32,9 +32,6 @@ module.exports = {
     },
     logout: function (req, res, next) {
         req.session.destroy();
-
-        console.log(req.session);
-
         res.send({
             state: 200,
             message: '로그아웃 되었습니다.',

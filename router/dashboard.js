@@ -28,8 +28,9 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get('/introduce/:comId', dashboardController.introduce);
 // router.get('/introduce', dashboardController.introduce);
+router.get('/introduce/:comId', dashboardController.introduce);
+router.get('/company_list', dashboardController.companyList);
 
 router.post('/save_introduce_info', dashboardController.saveIntroduceInfo);
 

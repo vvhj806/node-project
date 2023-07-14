@@ -29,5 +29,10 @@ module.exports = {
                 res.send({state: 200, message: '저장완료', data: result});
             }
         });
+    },
+    companyList: function(req, res, next) {
+        res.render(theme.getPageViewPath("dashboards", "dashboard"), {
+            currentLayout: theme.getLayoutPath("pages/company_list"),
+        });
     }
 };

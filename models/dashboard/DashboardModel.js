@@ -37,5 +37,8 @@ module.exports = {
             });
             con.end();
         });
+    },
+    getCompanyList: function() {
+        
     }
 }

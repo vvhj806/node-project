@@ -15,6 +15,7 @@ module.exports = {
                     data: result
                 });
             } else {
+                req.session.idx = result[0].idx;
                 req.session.user = id;
                 req.session.is_logined = true;
                 req.session.save();
@@ -36,5 +37,16 @@ module.exports = {
             state: 200,
             message: '로그아웃 되었습니다.',
         });
+    },
+    getLoginUserInfo: function (req, res, next) {
+        console.log(req.session);
+        const data = {
+            idx: req.session.idx,
+            id: req.session.user,
+        }
+
+        // Auth.getLoginUserInfo(req.session.idx, req.session.user)
+
+        res.send(data);
     }
 }

@@ -7,15 +7,28 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
             const con = mysql.createConnection(db);
-            con.query(
-                sql, (err, result, field) => {
-                    if(err) {
-                        reject(err);
-                    } else {
-                        resolve(result);
-                    }
+            con.query(sql, (err, result, field) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
                 }
-            );
+            });
+            con.end();
+        });
+    },
+    getLoginUserInfo: function(idx, id) {
+        const sql =  `SELECT * FROM member WHERE idx = '${idx}' AND id = '${id}'`;
+
+        return new Promise((resolve, reject) => {
+            const con = mysql.createConnection(db);
+            con.query(sql, (err, result, field) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
             con.end();
         });
     }

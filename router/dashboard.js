@@ -18,6 +18,8 @@ router.use((req, res, next) => {
   // }
 });
 
+router.use(express.static("public"));
+
 router.get("/", (req, res) => {
   theme.addVendors(["amcharts", "amcharts-maps", "amcharts-stock"]);
   theme.addJavascriptFile("js/common/logout.js");
@@ -26,9 +28,9 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get('/introduce', dashboardController.introduce);
+router.get('/introduce/:comId', dashboardController.introduce);
+// router.get('/introduce', dashboardController.introduce);
 
 router.post('/save_introduce_info', dashboardController.saveIntroduceInfo);
-
 
 module.exports = router;

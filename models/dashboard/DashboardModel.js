@@ -7,34 +7,34 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
             const con = mysql.createConnection(db);
-            con.query(
-                sql, (err, result, field) => {
-                    if(err) {
-                        reject(err);
-                    } else {
-                        resolve(result);
-                    }
+            con.query(sql, (err, result, field) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(result);
                 }
-            );
+            });
             con.end();
         });
     },
-    saveIntroduceInfo: function(companyId, title, content) {
-        // UPDATE문 실행시키기 전 
+    saveIntroduceInfo: function(companyId, title, content, saveState) {
+        let sql = '';
 
-        const sql = `UPDATE company_introduce SET title = '${title}', content = '${content}' WHERE company_id = '${companyId}'`;
-
+        if(saveState == 'i') {
+            sql = `INSERT INTO company_introduce (company_id, title, content) VALUES (${companyId}, '${title}', '${content}')`;
+        } else if(saveState == 'u') {
+            sql = `UPDATE company_introduce SET title = '${title}', content = '${content}' WHERE company_id = '${companyId}'`;
+        }
+        
         return new Promise((resolve, reject) => {
             const con = mysql.createConnection(db);
-            con.query(
-                sql, (err, result, field) => {
-                    if(err) {
-                        reject(err);
-                    } else {
-                        resolve(result);
-                    }
+            con.query(sql, (err, result, field) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(result);
                 }
-            );
+            });
             con.end();
         });
     }

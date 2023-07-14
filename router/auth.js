@@ -5,6 +5,7 @@ const authController = require('../controllers/auth/AuthController');
 //로그인, 로그아웃 axios
 router.post('/login-req', authController.login);
 router.post('/logout-req', authController.logout);
+router.get('/getLoginUserInfo', authController.getLoginUserInfo);
 
 router.use((req, res, next) => {
    bootstrap.init();

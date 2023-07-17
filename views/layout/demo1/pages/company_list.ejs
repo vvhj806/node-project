@@ -13,46 +13,95 @@
                                     <div class="card-title d-flex flex-column">
                                         <div class="d-flex align-items-center">
                                             <div class="fs-1hx fw-bold text-dark me-2 introduce_title">
-                                                호텔관리<br>
-                                                LIST
+                                                호텔관리 LIST
                                             </div>
-                                        </div>
-
-                                        <div class="text-darkgray-400 pt-1 fw-semibold fs-6 mg_b_30">
-                                            업체 리스트
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+                                <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center" style="justify-content: space-between;">
+                                    <div class="search_box">
+                                        <span class="mg_r_10">총 <%= data.totalCnt %>건</span>
+                                        <div class="d-flex align-items-center position-relative my-1">
+                                            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5">
+                                                <span class="path1"></span><span class="path2"></span>
+                                            </i>
+                                            <input type="text" id="search_company" class="form-control form-control-solid w-250px ps-13" placeholder="업체명을 입력해주세요." onkeydown="searchEnterKey(event)">
+                                        </div>
+                                        <span class="search_btn" id="search_btn">검색</span>
+                                    </div>
+
+                                    <a href="#" id="kt_app_layout_builder_toggle" class="btn btn-dark lh-1 py-4">+ 추가</a>
+
                                     <table class="rounded-table">
+                                        <colgroup>
+                                            <col style="width: 5%;">
+                                            <col style="width: 40%;">
+                                            <col style="width: 30%;">
+                                            <col style="width: 10%;">
+                                            <col style="width: 10%;">
+                                        </colgroup>
+
                                         <thead>
-                                          <tr>
-                                            <th>NO.</th>
-                                            <th>Column 2</th>
-                                            <th>Column 3</th>
-                                          </tr>
+                                            <tr class="c">
+                                                <th>NO.</th>
+                                                <th>업체명</th>
+                                                <th>사업자번호</th>
+                                                <th>사용여부</th>
+                                                <th>보기</th>
+                                            </tr>
                                         </thead>
 
-                                        <tbody>
-                                          <tr>
-                                            <td>Item 1</td>
-                                            <td>Item 2</td>
-                                            <td>Item 3</td>
-                                          </tr>
-                                          <tr>
-                                            <td>Item 4</td>
-                                            <td>Item 5</td>
-                                            <td>Item 6</td>
-                                          </tr>
-                                          <tr>
-                                            <td>Item 7</td>
-                                            <td>Item 8</td>
-                                            <td>Item 9</td>
-                                          </tr>
+                                        <tbody id="company_list" class="c">
+                                            <% data.list.forEach((item, index) => { %>
+                                                <tr>
+                                                    <td><%= (data.totalCnt - index) - ((data.currentPage -1) * 5) %></td>
+                                                    <td class="b"><%= item.company_name %></td>
+                                                    <td><%= item.business_number %></td>
+                                                    <td>
+                                                        <% if (item.use_yn === 'y') { %>
+                                                            <div class="badge badge-light-success fw-bold">사용중</div>
+                                                         <% } else { %>
+                                                            <div class="badge badge-light fw-bold">미사용</div>
+                                                        <% } %>
+                                                    </td>
+                                                    <td><a href="#" class="btn btn-sm btn-flex btn-secondary fw-bold" >보기</a></td>
+                                                </tr>
+                                            <% }); %>
                                         </tbody>
                                     </table>
                                 </div>
+
+                                <!-- 페이징 start -->
+                                <div class="card-footer d-flex justify-content-center pt-3">
+                                    <ul class="pagination">
+                                        <% if (data.currentPage > 1) { %>
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page=1&search=<%= data.search %>">First</a>
+                                            </li>
+                                        <% } %>
+                
+                                        <% for (let i = 1; i <= data.totalPages; i++) { %>
+                                            <% if (i === data.currentPage) { %>
+                                                <li class="page-item active">
+                                                    <span class="page-link"><%= i %></span>
+                                                </li>
+                                            <% } else { %>
+                                                <li class="page-item" id="page_<%= i %>">
+                                                    <a class="page-link" href="?page=<%= i %>&search=<%= data.search %>"><%= i %></a>
+                                                </li>
+                                            <% } %>
+                                        <% } %>
+                
+                                        <% if (data.currentPage < data.totalPages) { %>
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page=<%= data.totalPages %>&search=<%= data.search %>">Last</a>
+                                            </li>
+                                        <% } %>
+                                    </ul>
+                                </div>
+                                <!-- 페이징 end -->
+
                             </div>
                         </div>
                     </div>
@@ -69,3 +118,22 @@
 <%- include(theme.getPartialPath("partials/_drawers.ejs")); %>
 
 <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+
+<script>
+var currentPage = <%= data.currentPage %>;
+
+$(document).ready(function(){
+    $('#page_'+ currentPage).addClass('active');
+});
+
+$('#search_btn').on('click', function(){
+    location.href = '/company_list?page=1&search=' + $('#search_company').val();
+});
+
+function searchEnterKey(event) {
+    if (event.keyCode === 13) { 
+        location.href = '/company_list?page=1&search=' + $('#search_company').val();
+    }
+}
+
+</script>

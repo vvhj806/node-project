@@ -31,8 +31,24 @@ module.exports = {
         });
     },
     companyList: function(req, res, next) {
-        res.render(theme.getPageViewPath("dashboards", "dashboard"), {
-            currentLayout: theme.getLayoutPath("pages/company_list"),
+        const page = req.query.page || 1;
+        const search = req.query.search || '';
+        let totalPage = 0;
+        let totalCnt = 0;
+
+        Dash.getCompanyListCnt(search).then((result) => {
+            totalPage = Math.floor(((result[0].cnt - 1) / 5) + 1);
+            totalCnt = result[0].cnt;
+            
+            Dash.getCompanyList(page, search).then((result) => {
+                res.render(theme.getPageViewPath("dashboards", "dashboard"), {
+                    currentLayout: theme.getLayoutPath("pages/company_list"),
+                    data: {list: result, currentPage: page, totalPages: totalPage, totalCnt: totalCnt, search: search}
+                });
+            });
         });
+    },
+    companyDetail: function(req, res, next) {
+        
     }
 };

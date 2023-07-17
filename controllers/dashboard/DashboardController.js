@@ -48,7 +48,15 @@ module.exports = {
             });
         });
     },
-    companyDetail: function(req, res, next) {
+    companyInfo: function(req, res, next) {
+        const companyId = parseInt(req.params.comId, 10); 
+
+        if(companyId == '0') {
+            // 새로운 회사 등록
+        }
         
+        res.render(theme.getPageViewPath("dashboards", "dashboard"), {
+            currentLayout: theme.getLayoutPath("pages/company_info"),
+        });
     }
 };

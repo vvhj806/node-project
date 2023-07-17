@@ -53,6 +53,10 @@ module.exports = {
 
         if(companyId == '0') {
             // 새로운 회사 등록
+            // 정보 입력 후 INSERT
+        } else {
+            // 기존회사 정보 띄워주기
+            // 정보 입력 후 UPDATE
         }
         
         res.render(theme.getPageViewPath("dashboards", "dashboard"), {

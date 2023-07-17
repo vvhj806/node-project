@@ -79,5 +79,8 @@ module.exports = {
             });
             con.end();
         });
+    },
+    getCompanyInfo: function() {
+        
     }
 }

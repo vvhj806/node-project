@@ -80,7 +80,34 @@ module.exports = {
             con.end();
         });
     },
-    getCompanyInfo: function() {
-        
+    getCompanyInfo: function(comId) {
+        const sql = `SELECT * FROM company`;
+
+        return new Promise((resolve, reject) => {
+            const con = mysql.createConnection(db);
+            con.query(sql, (err, result, field) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
+            con.end();
+        });
+    },
+    getAllMenus: function() {
+        const sql = `SELECT * FROM menu`;
+
+        return new Promise((resolve, reject) => {
+            const con = mysql.createConnection(db);
+            con.query(sql, (err, result, field) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
+            con.end();
+        });
     }
 }

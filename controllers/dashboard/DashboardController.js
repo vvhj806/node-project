@@ -54,13 +54,29 @@ module.exports = {
         if(companyId == '0') {
             // 새로운 회사 등록
             // 정보 입력 후 INSERT
+
+            res.render(theme.getPageViewPath("dashboards", "dashboard"), {
+                currentLayout: theme.getLayoutPath("pages/company_info"),
+                data: {companyId: companyId}
+            });
         } else {
             // 기존회사 정보 띄워주기
             // 정보 입력 후 UPDATE
+
+            res.render(theme.getPageViewPath("dashboards", "dashboard"), {
+                currentLayout: theme.getLayoutPath("pages/company_info"),
+                data: {companyId: companyId}
+            });
         }
-        
-        res.render(theme.getPageViewPath("dashboards", "dashboard"), {
-            currentLayout: theme.getLayoutPath("pages/company_info"),
-        });
+    },
+    manageMenu: function(req, res, next) {
+        Dash.getAllMenus().then((result) => {
+            console.log(result);
+
+            res.render(theme.getPageViewPath("dashboards", "dashboard"), {
+                currentLayout: theme.getLayoutPath("pages/manage_menu"),
+                data: {menuList: result}
+            });
+        })
     }
 };

@@ -32,6 +32,7 @@ router.get("/", (req, res) => {
 router.get('/introduce/:comId', dashboardController.introduce);
 router.get('/company_list', dashboardController.companyList);
 router.get('/company_info/:comId', dashboardController.companyInfo);
+router.get('/manage_menu', dashboardController.manageMenu);
 
 router.post('/save_introduce_info', dashboardController.saveIntroduceInfo);
 

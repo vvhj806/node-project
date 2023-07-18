@@ -65,7 +65,7 @@
                                                             <div class="badge badge-light fw-bold">미사용</div>
                                                         <% } %>
                                                     </td>
-                                                    <td><a href="#" class="btn btn-sm btn-flex btn-secondary fw-bold" >보기</a></td>
+                                                    <td><a href="/company_info/<%= item.idx %>" class="btn btn-sm btn-flex btn-secondary fw-bold" >보기</a></td>
                                                 </tr>
                                             <% }); %>
                                         </tbody>
@@ -120,20 +120,19 @@
 <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
 
 <script>
-var currentPage = <%= data.currentPage %>;
+    var currentPage = <%= data.currentPage %>;
 
-$(document).ready(function(){
-    $('#page_'+ currentPage).addClass('active');
-});
+    $(document).ready(function(){
+        $('#page_'+ currentPage).addClass('active');
+    });
 
-$('#search_btn').on('click', function(){
-    location.href = '/company_list?page=1&search=' + $('#search_company').val();
-});
-
-function searchEnterKey(event) {
-    if (event.keyCode === 13) { 
+    $('#search_btn').on('click', function(){
         location.href = '/company_list?page=1&search=' + $('#search_company').val();
-    }
-}
+    });
 
+    function searchEnterKey(event) {
+        if (event.keyCode === 13) { 
+            location.href = '/company_list?page=1&search=' + $('#search_company').val();
+        }
+    }
 </script>

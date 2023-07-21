@@ -19,14 +19,47 @@
 				<div class="menu-sub menu-sub-accordion">
 					<!--begin:Menu item-->
 					<div class="menu-item">
-						<!--begin:Menu link-->
-						<a class="menu-link active" href="/">
+						<!-- <a class="menu-link active" href="/"> -->
+						<a class="menu-link" href="/">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
 							<span class="menu-title">홈</span>
 						</a>
-						<!--end:Menu link-->
+					</div>
+					<!--end:Menu item-->
+
+					<!--begin:Menu item-->
+					<div class="menu-item">
+						<a class="menu-link" href="/member_list" id="menu_member_list">
+							<span class="menu-bullet">
+								<span class="bullet bullet-dot"></span>
+							</span>
+							<span class="menu-title">회원관리</span>
+						</a>
+					</div>
+					<!--end:Menu item-->
+
+
+					<!--begin:Menu item-->
+					<div class="menu-item">
+						<a class="menu-link" href="/company_list">
+							<span class="menu-icon">
+								<%- theme.getIcon("address-book", "fs-2") %>
+							</span>
+							<span class="menu-title">호텔 관리</span>
+						</a>
+					</div>
+					<!--end:Menu item-->
+
+					<!--begin:Menu item-->
+					<div class="menu-item">
+						<a class="menu-link" href="/introduce">
+							<span class="menu-bullet">
+								<span class="bullet bullet-dot"></span>
+							</span>
+							<span class="menu-title">소개(호텔관리 안으로 넣기)</span>
+						</a>
 					</div>
 					<!--end:Menu item-->
 					
@@ -69,31 +102,7 @@
 			<!--begin:Menu item-->
 			<div class="menu-item">
 				<!--begin:Menu link-->
-				<a class="menu-link" href="/company_list">
-					<span class="menu-icon">
-						<%- theme.getIcon("address-book", "fs-2") %>
-					</span>
-					<span class="menu-title">호텔 관리</span>
-				</a>
-				<!--end:Menu link-->
-			</div>
-			<!--end:Menu item-->
-
-			<!--begin:Menu item-->
-			<div class="menu-item">
-				<a class="menu-link" href="/introduce">
-					<span class="menu-bullet">
-						<span class="bullet bullet-dot"></span>
-					</span>
-					<span class="menu-title">소개(호텔관리 안으로 넣기)</span>
-				</a>
-			</div>
-			<!--end:Menu item-->
-
-			<!--begin:Menu item-->
-			<div class="menu-item">
-				<!--begin:Menu link-->
-				<a class="menu-link" href="/manage_menu" target="_blank">
+				<a class="menu-link" href="/manage_menu">
 					<span class="menu-icon">
 						<%- theme.getIcon("rocket", "fs-2") %>
 					</span>
@@ -106,7 +115,7 @@
 			<!--begin:Menu item-->
 			<div class="menu-item">
 				<!--begin:Menu link-->
-				<a class="menu-link" href="https://preview.keenthemes.com/html/metronic/docs" target="_blank">
+				<a class="menu-link" href="/merchandise">
 					<span class="menu-icon">
 						<%- theme.getIcon("abstract-26", "fs-2") %>
 					</span>

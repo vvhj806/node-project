@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const dashboardController = require('../controllers/dashboard/DashboardController');
 const url = require('url');
+const multer = require('multer');
+const path = require('path');
+const uploadDir = path.join(__dirname, '../', 'public', 'assets', 'data', 'tmp');
+const upload = multer({ dest: uploadDir });
+// const upload = multer({ dest: '/assets/data/img/' });
 
 router.use((req, res, next) => {
   bootstrap.init();
@@ -33,7 +38,18 @@ router.get('/introduce/:comId', dashboardController.introduce);
 router.get('/company_list', dashboardController.companyList);
 router.get('/company_info/:comId', dashboardController.companyInfo);
 router.get('/manage_menu', dashboardController.manageMenu);
+router.get('/merchandise/:comId', dashboardController.merchandise);
+router.get('/img_save_test', dashboardController.imgSaveTest);
+router.get('/member_list', dashboardController.memberList);
+router.get('/member_info/:memIdx', dashboardController.memberInfo);
 
 router.post('/save_introduce_info', dashboardController.saveIntroduceInfo);
+router.post('/add_menu', dashboardController.addMenu);
+router.post('/mod_menu', dashboardController.modMenu);
+router.post('/del_menu', dashboardController.delMenu);
+router.post('/save_img', upload.single('file'), dashboardController.saveImg);
+router.post('/get_sub_menu', dashboardController.getSubMenu);
+router.post('/add_sub_menu', dashboardController.addSubMenu);
+router.post('/add_member', dashboardController.addMember);
 
 module.exports = router;
